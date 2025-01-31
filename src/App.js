@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { BrowserRouter as Router, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -21,6 +21,9 @@ function App() {
     const queryParams = new URLSearchParams(location.search);
     const pageFromURL = parseInt(queryParams.get("page")) || 1;
     const [page, setPage] = useState(pageFromURL);
+
+    // UseRef to track changes to searchTerm and departmentFilter to prevent unnecessary re-fetching
+    const isFirstRender = useRef(true);
 
     // Fetch departments dynamically on initial load
     useEffect(() => {
@@ -72,10 +75,15 @@ function App() {
             .finally(() => setLoading(false)); // Stop loading state
     };
 
-    // Fetch artwork IDs when search term or department filter changes
+    // Avoid fetching when on the first render
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
         fetchArtworkIds(); // Fetch new artwork IDs when the search or department filter changes
-    }, [searchTerm, departmentFilter]);
+    }, [searchTerm, departmentFilter]); // Only fetch when these values change
 
     // Fetch artwork details when artworkIds change or pagination changes
     useEffect(() => {
