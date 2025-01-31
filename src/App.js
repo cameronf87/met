@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { BrowserRouter as Router, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 
 function App() {
-    // State management for various parts of the app
     const [artworkIds, setArtworkIds] = useState([]); // Holds all artwork IDs for the current search/pagination
     const [artworks, setArtworks] = useState([]); // Holds detailed artwork information
     const [loading, setLoading] = useState(false); // Tracks loading state
@@ -22,9 +21,6 @@ function App() {
     const pageFromURL = parseInt(queryParams.get("page")) || 1;
     const [page, setPage] = useState(pageFromURL);
 
-    // UseRef to track changes to searchTerm and departmentFilter to prevent unnecessary re-fetching
-    const isFirstRender = useRef(true);
-
     // Fetch departments dynamically on initial load
     useEffect(() => {
         fetch("https://collectionapi.metmuseum.org/public/collection/v1/departments")
@@ -34,7 +30,7 @@ function App() {
     }, []);
 
     // Fetch artwork IDs based on search term or department filter
-    const fetchArtworkIds = () => {
+    const fetchArtworkIds = useCallback(() => {
         setLoading(true); // Show loading spinner
         setError(null); // Reset any previous errors
 
@@ -73,17 +69,7 @@ function App() {
             })
             .catch(() => setError("Error fetching artwork data"))
             .finally(() => setLoading(false)); // Stop loading state
-    };
-
-    // Avoid fetching when on the first render
-    useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
-
-        fetchArtworkIds(); // Fetch new artwork IDs when the search or department filter changes
-    }, [searchTerm, departmentFilter]); // Only fetch when these values change
+    }, [searchTerm, departmentFilter]);
 
     // Fetch artwork details when artworkIds change or pagination changes
     useEffect(() => {
@@ -115,6 +101,13 @@ function App() {
         navigate(`?page=${page}`, { replace: true });
     }, [page, artworkIds, navigate]);
 
+    // Fetch initial artworks when the page loads if there is no search term
+    useEffect(() => {
+        if (searchTerm === "" && departmentFilter === "") {
+            fetchArtworkIds(); // Trigger initial fetch if no search term is provided
+        }
+    }, [searchTerm, departmentFilter, fetchArtworkIds]);
+
     // Handle the search input change
     const handleSearchChange = (event) => setSearchTerm(event.target.value);
 
@@ -127,11 +120,13 @@ function App() {
 
     // Handle search button click (or Enter key press)
     const handleSearchClick = () => {
-        if (searchTerm.trim() === "") {
-            setDepartmentFilter(""); // Reset department filter when search is cleared
-            fetchArtworkIds(); // Fetch all artwork IDs when search is cleared
-        } else {
-            fetchArtworkIds(); // Otherwise, fetch artwork based on the search term
+        fetchArtworkIds(); // Trigger fetchArtworkIds directly when search button is clicked
+    };
+
+    // Handle "Enter" key press to trigger search
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            fetchArtworkIds(); // Trigger search on Enter key press
         }
     };
 
@@ -156,11 +151,7 @@ function App() {
                     placeholder="Search by title or ID"
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            handleSearchClick(); // Trigger search on Enter key press
-                        }
-                    }}
+                    onKeyDown={handleKeyPress} // Add event listener for the "Enter" key press
                 />
 
                 <select value={departmentFilter} onChange={handleDepartmentFilterChange}>
