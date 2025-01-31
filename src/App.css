@@ -1,0 +1,309 @@
+/* src/App.css */
+
+/* General Styles */
+.App {
+    text-align: center;
+}
+
+.App-header {
+    background-color: #003366; /* Changed to navy blue */
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding: 20px; /* Padding inside the masthead */
+    width: 100%;
+    box-sizing: border-box; /* Ensures no overflow */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    white-space: nowrap; /* Prevents text from wrapping horizontally */
+}
+
+.App-header h1 {
+    font-size: 2rem;
+    margin: 0;
+    white-space: normal; /* Allows text to wrap if necessary */
+}
+
+/* Search Input Styles */
+input[type="text"] {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Select Dropdown Styles */
+select {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px; /* Made buttons a little smaller */
+    background-color: #007BFF; /* A vibrant blue */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Increased font size for better visibility */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button Hover Styling */
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover for emphasis */
+}
+
+/* Disabled button */
+button:disabled {
+    background-color: #b0d0f7; /* Lighter blue for disabled state */
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Pagination Button Styling */
+.pagination button {
+    padding: 10px 20px; /* Slightly smaller padding */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Pagination Button Hover Styling */
+.pagination button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Pagination Disabled Button */
+.pagination button:disabled {
+    background-color: #b0d0f7;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Pagination Container Styling */
+.pagination {
+    margin-top: 20px;
+    padding-bottom: 20px; /* Add padding below the pagination */
+}
+
+.pagination button {
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.pagination button:hover {
+    background-color: #444;
+}
+
+/* Artwork List Styles */
+.artwork-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.artwork-item {
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.artwork-item:hover {
+    transform: scale(1.05);
+}
+
+.artwork-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.artwork-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Artwork Detail Styles */
+.artwork-detail {
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.artwork-detail h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.artwork-detail p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.artwork-detail img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+/* Artwork Styles */
+.artwork-container {
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.artwork-container:hover {
+    transform: scale(1.05);
+}
+
+.artwork-thumbnail {
+    width: 100%;
+    padding-bottom: 100%; /* Keeps the thumbnail image square */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.artwork-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.artwork-details h3 {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.artwork-details p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-height: 80vh; /* Limit the height of the modal */
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    width: 80%; /* Adjust the width to fit content better */
+    margin: auto;
+    position: relative;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Image inside modal */
+.modal-content img {
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Modal Backdrop (darkened) */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Close Button in Modal */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .artwork-item {
+        width: 100%;  /* Adjust artwork item size for smaller screens */
+    }
+
+    .pagination button {
+        width: 100%;  /* Stack pagination buttons vertically */
+        margin: 10px 0;
+    }
+
+    input[type="text"], select {
+        width: 100%;  /* Full width for input and select */
+        max-width: 100%;
+    }
+
+    .App-header {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .artwork-item {
+        width: 100%;  /* Adjust for small screens */
+    }
+}
