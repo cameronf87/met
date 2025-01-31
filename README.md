@@ -49,38 +49,38 @@ yarn start
 The app will be available at http://localhost:3000 in your browser.
 
 ## Project Structure
-src/App.js: The main entry point of the application.
-src/Artwork.js: Displays individual artwork with clickable image and title.
-src/ArtworkDetail.js: Shows detailed information about a specific artwork.
-src/ArtworkList.js: Renders a list of artworks with thumbnails and titles.
-src/App.css: Styling for the application.
+src/App.js: The main entry point of the application. <br>
+src/Artwork.js: Displays individual artwork with clickable image and title. <br>
+src/ArtworkDetail.js: Shows detailed information about a specific artwork. <br>
+src/ArtworkList.js: Renders a list of artworks with thumbnails and titles. <br>
+src/App.css: Styling for the application. <br>
 
 ## API
 This app uses The Metropolitan Museum of Art's public API to fetch artwork data. For more details about the API, visit: Met Museum Collection API
 
 ## Endpoints used:
-Artwork Search: https://collectionapi.metmuseum.org/public/collection/v1/search
-Artwork Details: https://collectionapi.metmuseum.org/public/collection/v1/objects/{id}
-Departments: https://collectionapi.metmuseum.org/public/collection/v1/departments
+Artwork Search: https://collectionapi.metmuseum.org/public/collection/v1/search <br>
+Artwork Details: https://collectionapi.metmuseum.org/public/collection/v1/objects/{id} <br>
+Departments: https://collectionapi.metmuseum.org/public/collection/v1/departments <br>
 
 ## Technologies Used
-React - Frontend framework for building the user interface.
-CSS - For styling the components.
-Metropolitan Museum Collection API - For fetching artwork data.
+React - Frontend framework for building the user interface.<br>
+CSS - For styling the components.<br>
+Metropolitan Museum Collection API - For fetching artwork data.<br>
 
 ## Contributing
 Contributions are welcome! If you have suggestions for improvements or bug fixes, feel free to open an issue or submit a pull request.
 
 - Fork the repository.
-- Create your branch (git checkout -b feature/your-feature).
-- Commit your changes (git commit -am 'Add new feature').
-- Push to the branch (git push origin feature/your-feature).
+- Create your branch (git checkout -b feature/your-feature).<br>
+- Commit your changes (git commit -am 'Add new feature').<br>
+- Push to the branch (git push origin feature/your-feature).<br>
 - Create a new Pull Request.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
-Metropolitan Museum of Art: For providing access to their collection through their API.
-React: The powerful JavaScript library that made building this app possible.
-CSS: For styling and making the app look good!
+Metropolitan Museum of Art: For providing access to their collection through their API.<br>
+React: The powerful JavaScript library that made building this app possible.<br>
+CSS: For styling and making the app look good!<br>
